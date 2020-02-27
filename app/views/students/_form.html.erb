@@ -1,0 +1,21 @@
+<h1>Student Form</h1>
+
+<%= form_for @student do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %><br>
+<%= f.label :age %>
+<%= f.text_field :age %><br>
+<%= f.label :major %>
+<%= f.text_field :major %><br>
+<%= f.label :instructor %>
+<%= f.collection_select :instructor_id, @instructors, :id, :name %>
+
+<br><%= f.submit %>
+<% end %>
+
+<br>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |e| %>
+    <li style="color: red"><%= e %></li>
+  <% end %>
+<% end %>

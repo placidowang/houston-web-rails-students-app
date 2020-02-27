@@ -14,7 +14,7 @@ class InstructorsController < ApplicationController
   end
 
   def create
-    instructor = Instructor.new(instructor_params(:name, :student_id))
+    instructor = Instructor.new(instructor_params(:name, student_ids:[]))
 
     if instructor.valid?
       instructor.save
@@ -26,12 +26,24 @@ class InstructorsController < ApplicationController
   end
 
   def edit
+    @students = Student.all
   end
 
   def update
+    @instructor.update(instructor_params(:name, student_ids:[]))
+
+    if @instructor.valid?
+      @instructor.save
+      redirect_to @instructor
+    else
+      flash[:errors] = @instructor.errors.full_messages
+      redirect_to edit_instructor_path
+    end
   end
 
   def destroy
+    @instructor.destroy
+    redirect_to instructors_path
   end
 
   private

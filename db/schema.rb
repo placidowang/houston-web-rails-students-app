@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20200227205845) do
     t.integer  "instructor_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["instructor_id"], name: "index_students_on_instructor_id"
   end
 
 end
