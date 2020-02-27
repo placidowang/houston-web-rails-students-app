@@ -1,0 +1,17 @@
+<h1>Instructor Form</h1>
+
+<%= form_for @instructor do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %><br>
+<%= f.label :students %>
+<%= f.collection_check_boxes :student_ids, @students, :id, :name %>
+
+<br><%= f.submit %>
+<% end %>
+
+<br>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |e| %>
+    <li style="color: red"><%= e %></li>
+  <% end %>
+<% end %>
